@@ -55,7 +55,11 @@ Usage Example:
 
 1. Sending text input
 ```shell
-adb shell am broadcast -a ADB_INPUT_TEXT --es msg '你好嗎? Hello?'
+adb shell "am broadcast -a ADB_INPUT_TEXT --es msg '你好嗎? Hello?'"
+```
+Alternatively, pipe the text if it has quotes or escape sequences:
+```shell
+echo \'single\' and \"double\" | adb shell am broadcast -a ADB_INPUT_TEXT --es msg '"$(cat)"'
 ```
 
 * This may not work for Oreo/P, am/adb command seems not accept utf-8 text string anymore
